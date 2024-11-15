@@ -1,12 +1,12 @@
 # ninja log v5
-33	237	7534100669127171	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	ba26e4b9845724ed
-239	359	7534100670336492	C:/Users/jeuch/Desktop/bike-workshop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1n420331/obj/arm64-v8a/libswappywrapper.so	811bb2498ed4698e
-16	875	7534100675474681	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	355c2031ce7b3d01
-24	915	7534100675825028	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	234bf085d5003010
-0	915	7534100675855258	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7aecf9969f44c92
-20	962	7534100676309016	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	1db1091e87a8e9b3
-28	991	7534100676627602	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b419d1c7516e2815
-8	1023	7534100676958573	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	bed3428f0d61009f
-11	1146	7534100678169903	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	db34eb3e7a8d2b94
-4	1269	7534100679365144	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	4f1cfdc4bba2d2eb
-1269	1351	7534100680248877	C:/Users/jeuch/Desktop/bike-workshop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1n420331/obj/arm64-v8a/libgame.so	b84a84ee87dc4617
+32	127	7534105005866414	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	ba26e4b9845724ed
+128	206	7534105006639248	C:/Users/jeuch/Desktop/bike-workshop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1n420331/obj/arm64-v8a/libswappywrapper.so	811bb2498ed4698e
+11	575	7534105010315073	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	1db1091e87a8e9b3
+15	585	7534105010440690	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	355c2031ce7b3d01
+4	600	7534105010591741	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d7aecf9969f44c92
+23	616	7534105010737538	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	234bf085d5003010
+27	677	7534105011351306	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b419d1c7516e2815
+0	690	7534105011502324	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	bed3428f0d61009f
+19	840	7534105012976139	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	db34eb3e7a8d2b94
+8	900	7534105013568187	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	4f1cfdc4bba2d2eb
+900	969	7534105014282602	C:/Users/jeuch/Desktop/bike-workshop/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/1n420331/obj/arm64-v8a/libgame.so	b84a84ee87dc4617
