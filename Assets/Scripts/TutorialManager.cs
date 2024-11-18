@@ -11,7 +11,7 @@ public class TutorialStep
 public class TutorialManager : MonoBehaviour
 {
     public List<TutorialStep> steps;
-    private int currentStepIndex = 0;
+    public int currentStepIndex = 0;
 
     void Start()
     {
