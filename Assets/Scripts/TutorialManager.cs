@@ -5,25 +5,7 @@ using System.Collections.Generic;
 public class TutorialStep
 {
     public GameObject stepObject; // The object to show/hide
-    public GameObject targetPart; // For highlighting, if needed
     private Material originalMaterial;
-
-    public void HighlightTargetPart( Material highlightMaterial)
-    {
-        if (targetPart != null)
-        {
-            originalMaterial = targetPart.GetComponent<Renderer>().material;
-            targetPart.GetComponent<Renderer>().material = highlightMaterial;
-        }
-    }
-
-    public void RemoveHighlightFromTargetPart()
-    {
-        if (targetPart != null)
-        {
-            targetPart.GetComponent<Renderer>().material = originalMaterial;
-        }
-    }
 }
 
 public class TutorialManager : MonoBehaviour
@@ -39,6 +21,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (step.stepObject != null)
             {
+                // Disable script attached to the step object
                 step.stepObject.SetActive(false);
             }
         }
@@ -71,12 +54,6 @@ public class TutorialManager : MonoBehaviour
         {
             step.stepObject.SetActive(true);
         }
-
-        // Highlight the target part if needed
-        if (step.targetPart != null)
-        {
-            step.HighlightTargetPart(highlightMaterial);
-        }
     }
 
     private void HideCurrentStepObject()
@@ -86,12 +63,6 @@ public class TutorialManager : MonoBehaviour
         if (step.stepObject != null)
         {
             step.stepObject.SetActive(false);
-        }
-
-        // Remove highlight from target part if needed
-        if (step.targetPart != null)
-        {
-            step.RemoveHighlightFromTargetPart();
         }
     }
 }
