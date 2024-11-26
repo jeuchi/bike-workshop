@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class TakeOutFrontAxle : MonoBehaviour
 {
-    [Header("Instruction Settings")]
-    public Text instructionText;  
+    public TutorialManager tutorialManager;
 
     [Header("Axle Settings")]
     public GameObject axleHighlight; // Reference to the axle GameObject
@@ -16,13 +15,11 @@ public class TakeOutFrontAxle : MonoBehaviour
 
     private Material axleOriginalMaterial;
     private Material originalMaterial;
-    private TutorialManager tutorialManager;
     private bool isInTargetZone = false;
 
     void OnEnable()
     {
-        tutorialManager = FindAnyObjectByType<TutorialManager>();
-        instructionText.text = "Pull the front axle (highlighted green) out of the front tire. This will free the tire from the frame.";
+        tutorialManager.instructionText.text = "Pull the front axle (highlighted green) out of the front tire. This will free the tire from the frame.";
         axle.selectEntered.AddListener(OnAxleGrabbed);
         axle.selectExited.AddListener(OnAxleReleased);
         axleOriginalMaterial = axleHighlight.GetComponent<Renderer>().material;
@@ -50,7 +47,7 @@ public class TakeOutFrontAxle : MonoBehaviour
             targetZone.SetActive(true);
             //axleHighlight.GetComponent<Renderer>().material = axleOriginalMaterial;
         
-            instructionText.text = "Place the front axle in the target zone on the table";
+            tutorialManager.instructionText.text = "Place the front axle in the target zone on the table";
             targetZone.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;
             axle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class RemoveTire : MonoBehaviour
 {
-    public Text instructionText;   
+    public TutorialManager tutorialManager;
     public GameObject tireHighlight; // Reference to the tire GameObject  
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable targetObject;    // The object the user interacts with
     public GameObject targetZone;      // The target zone as an XRSocketInteractor
@@ -13,15 +13,11 @@ public class RemoveTire : MonoBehaviour
     private Material originalMaterial;         // The original material of the target object
 
     private bool isInTargetZone = false;
-    private bool isPickedUp = false;
     private Vector3 initialPosition;
     private Quaternion originalRotation;
-    private TutorialManager tutorialManager;
 
     void Start()
-    {
-        tutorialManager = FindAnyObjectByType<TutorialManager>();
-        
+    {        
         // Enable the grab interactable, and sphere collider
         targetObject.GetComponent<SphereCollider>().enabled = true;
         targetObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
@@ -30,7 +26,7 @@ public class RemoveTire : MonoBehaviour
         initialPosition = targetObject.transform.position;
         originalRotation = targetObject.transform.rotation;
 
-        instructionText.text = "Please pick up the front tire";
+        tutorialManager.instructionText.text = "Please pick up the front tire";
           
         // Subscribe to the XRGrabInteractable events
         targetObject.selectEntered.AddListener(OnObjectPickedUp);
@@ -61,7 +57,7 @@ public class RemoveTire : MonoBehaviour
         // Unfreeze constraints
         targetObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 targetZone.SetActive(true);
-        instructionText.text = "Please drop the front tire in the highlighted area";
+        tutorialManager.instructionText.text = "Please drop the front tire in the highlighted area";
         tireHighlight.GetComponent<Renderer>().material = originalTireMaterial;
         // Highlight the target zone
         if (!isInTargetZone) {
@@ -71,7 +67,7 @@ targetZone.SetActive(true);
 
     private void OnObjectDropped(SelectExitEventArgs args)
     {
-        instructionText.text = "Please pick up the front tire";
+        tutorialManager.instructionText.text = "Please pick up the front tire";
 
         // Highlight the tire
         tireHighlight.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;

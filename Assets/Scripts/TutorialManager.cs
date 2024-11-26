@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class TutorialStep
@@ -13,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     public List<TutorialStep> steps;
     public Material highlightMaterial;
     public int currentStepIndex = 0;
+    public Text instructionText;
 
     void Start()
     {

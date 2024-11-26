@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class LeverOuterTire : MonoBehaviour
 {
-    [Header("Instruction Settings")]
-    public Text instructionText;
+    public TutorialManager tutorialManager;
 
     [Header("Lever Settings")]
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable lever; // Reference to the lever GameObject
@@ -23,14 +22,11 @@ public class LeverOuterTire : MonoBehaviour
     private Dictionary<GameObject, Material> pointOriginalMaterials = new Dictionary<GameObject, Material>();
     private int currentGroupIndex = 0;
     private bool isLeverHeld = false;
-    private TutorialManager tutorialManager;
     private List<List<GameObject>> pointGroups = new List<List<GameObject>>();
     private HashSet<GameObject> touchedPointsInCurrentGroup = new HashSet<GameObject>();
 
-    void Start()
+    void OnEnable()
     {
-        tutorialManager = FindAnyObjectByType<TutorialManager>();
-
         // Unfreeze lever
         lever.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
@@ -68,7 +64,7 @@ public class LeverOuterTire : MonoBehaviour
         // Reset tire points to default state
         ResetProgress();
 
-        instructionText.text = "Please pick up the lever highlighted green on the desk in front of you";
+        tutorialManager.instructionText.text = "Please pick up the lever highlighted green on the desk in front of you";
     }
 
     void OnDisable()
@@ -88,7 +84,7 @@ public class LeverOuterTire : MonoBehaviour
         isLeverHeld = true;
         HighlightLever(false); // Remove lever highlight
         HighlightTirePoints(); // Highlight the tire points
-        instructionText.text = "With the lever, touch the top two tire points";
+        tutorialManager.instructionText.text = "With the lever, touch the top two tire points opposite of the valve stem";
     }
 
     private void OnLeverReleased(SelectExitEventArgs args)
@@ -120,13 +116,13 @@ public class LeverOuterTire : MonoBehaviour
         if (!isLeverHeld) 
         {
             HighlightLever(true); // Highlight the lever to prompt pickup
-            instructionText.text = "Please pick up the lever highlighted green";
+            tutorialManager.instructionText.text = "Please pick up the lever highlighted green";
         } else {
             currentGroupIndex = 0;
             touchedPointsInCurrentGroup.Clear();
             HighlightTirePoints();
             tire.transform.rotation = Quaternion.Euler(90, 0, -90);
-            instructionText.text = "With the lever, touch the top two tire points";
+            tutorialManager.instructionText.text = "With the lever, touch the top two tire points";
         }
     }
 
@@ -187,15 +183,15 @@ public class LeverOuterTire : MonoBehaviour
                     // Update tire instructions
                     if (currentGroupIndex == 0)
                     {
-                        instructionText.text = "With the lever, touch the next two tire points in the middle";
+                        tutorialManager.instructionText.text = "With the lever, touch the next two tire points in the middle";
                     }
                     else if (currentGroupIndex == 1)
                     {
-                        instructionText.text = "With the lever, touch the last two tire points on the bottom";
+                        tutorialManager.instructionText.text = "With the lever, touch the last two tire points on the bottom";
                     }
                     else
                     {
-                        instructionText.text = "";
+                        tutorialManager.instructionText.text = "";
                     }
 
                     // All points in current group have been touched

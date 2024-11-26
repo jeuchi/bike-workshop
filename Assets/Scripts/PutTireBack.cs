@@ -4,36 +4,38 @@ using UnityEngine.UI;
 
 public class PutTireBack : MonoBehaviour
 {
-    public Text instructionText;   
+    public TutorialManager tutorialManager;
     public GameObject tire;
     public GameObject bikeSocket;
+    public GameObject newTube;
+    public GameObject pumpHandle;
+    public GameObject pumpSocket;
 
-    private TutorialManager tutorialManager;
-
-    void Start()
+    void OnEnable()
     {
-        tutorialManager = FindAnyObjectByType<TutorialManager>();
-        instructionText.text = "Please pick up the front tire and place it back on the bike";
-        tire.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().selectEntered.AddListener(OnTireGrabbed);
-        bikeSocket.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.AddListener(OnObjectPlacedInZone);
+        tutorialManager.instructionText.text = "Please pick up the front tire and place it back on the bike";
+        tire.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
+        tire.GetComponent<SphereCollider>().enabled = true;
+        tire.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        bikeSocket.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.AddListener(OnTirePlacedOnBike);
+        pumpSocket.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.AddListener(OnPumpPlacedOnBike);
     }
 
-    void OnDisable()
-    {
-        tire.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().selectEntered.RemoveListener(OnTireGrabbed);
-        bikeSocket.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.RemoveListener(OnObjectPlacedInZone);
-    }
-
-    private void OnTireGrabbed(SelectEnterEventArgs args)
-    {
-        instructionText.text = "Place the front tire back on the bike";
-    }
-
-    private void OnObjectPlacedInZone(SelectEnterEventArgs args)
+    private void OnTirePlacedOnBike(SelectEnterEventArgs args)
     {
         if (args.interactableObject.transform == tire.transform)
         {
-            Debug.Log("Tire placed in zone");
+            tutorialManager.instructionText.text = "Place the pump handle in the pump socket";
+            newTube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            tire.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    private void OnPumpPlacedOnBike(SelectEnterEventArgs args)
+    {
+        if (args.interactableObject.transform == pumpHandle.transform)
+        {
+            Debug.Log("Pump placed in zone");
             tutorialManager.NextStep();
         }
     }
