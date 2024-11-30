@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     public Material highlightMaterial;
     public int currentStepIndex = 0;
     public Text instructionText;
+    public Text infoText;
 
     void Start()
     {

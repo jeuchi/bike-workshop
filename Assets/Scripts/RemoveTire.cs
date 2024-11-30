@@ -13,24 +13,18 @@ public class RemoveTire : MonoBehaviour
     private Material originalMaterial;         // The original material of the target object
 
     private bool isInTargetZone = false;
-    private Vector3 initialPosition;
-    private Quaternion originalRotation;
 
-    void Start()
+    void OnEnable()
     {        
         // Enable the grab interactable, and sphere collider
         targetObject.GetComponent<SphereCollider>().enabled = true;
         targetObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
 
-        // Save initial position
-        initialPosition = targetObject.transform.position;
-        originalRotation = targetObject.transform.rotation;
-
-        tutorialManager.instructionText.text = "Please pick up the front tire";
+        tutorialManager.instructionText.text = "Please grab the front tire and drop it in the highlighted area";
           
         // Subscribe to the XRGrabInteractable events
-        targetObject.selectEntered.AddListener(OnObjectPickedUp);
-        targetObject.selectExited.AddListener(OnObjectDropped);
+       // targetObject.selectEntered.AddListener(OnObjectPickedUp);
+       // targetObject.selectExited.AddListener(OnObjectDropped);
 
         // Subscribe to the XRSocketInteractor events
         targetZone.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.AddListener(OnObjectPlacedInZone);
@@ -40,6 +34,9 @@ public class RemoveTire : MonoBehaviour
         originalTireMaterial = tireHighlight.GetComponent<Renderer>().material;
         tireHighlight.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;
         //targetZone.selectExited.AddListener(OnObjectRemovedFromZone);
+        targetObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        targetZone.SetActive(true);
+        targetZone.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;
     }
 
     void OnDisable()
@@ -50,15 +47,15 @@ public class RemoveTire : MonoBehaviour
         targetZone.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().selectEntered.RemoveListener(OnObjectPlacedInZone);
                    // targetZone.SetActive(false);
         //targetZone.selectExited.RemoveListener(OnObjectRemovedFromZone);
+        targetZone.GetComponent<Renderer>().material = originalMaterial;
     }
 
     private void OnObjectPickedUp(SelectEnterEventArgs args)
     {
         // Unfreeze constraints
         targetObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-targetZone.SetActive(true);
-        tutorialManager.instructionText.text = "Please drop the front tire in the highlighted area";
-        tireHighlight.GetComponent<Renderer>().material = originalTireMaterial;
+        targetZone.SetActive(true);
+        //tireHighlight.GetComponent<Renderer>().material = originalTireMaterial;
         // Highlight the target zone
         if (!isInTargetZone) {
             targetZone.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;

@@ -25,9 +25,13 @@ public class Pump : MonoBehaviour
         progress.text = $"Current PSI: {currentPSI:F2} PSI Target PSI: {targetPSI:F2} PSI";
         warning.text = "";
         tutorialManager.instructionText.text = "Pump the front tire to reach 80 PSI. Pull the handle up and down to pump the tire.";
+        tutorialManager.infoText.text = "Did you know? Low tire pressure increases the risk of a flat tire. Road bike tires need much higher pressure than car tires—up to 120 psi, compared to just 32 psi for cars!";
         handleRigidbody = pumpHandle.GetComponent<Rigidbody>();
         grabInteractable = pumpHandle.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
-
+            
+        // Unfreeze y position of pump handle
+        pumpHandle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        
         // Subscribe to the XR Interaction Toolkit events
         grabInteractable.selectEntered.AddListener(OnGrabbed);
         grabInteractable.selectExited.AddListener(OnReleased);
@@ -35,7 +39,10 @@ public class Pump : MonoBehaviour
 
     void OnDisable()
     {
+        tutorialManager.instructionText.text = "";
+        tutorialManager.infoText.text = "";
         handleRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        
         // Unsubscribe from the XR Interaction Toolkit events
         grabInteractable.selectEntered.RemoveListener(OnGrabbed);
         grabInteractable.selectExited.RemoveListener(OnReleased);

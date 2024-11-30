@@ -83,6 +83,7 @@ public class TakeOutFrontAxle : MonoBehaviour
 
             // Freeze axle in place
             axle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            axle.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().interactionLayers = LayerMask.GetMask("");
 
             tutorialManager.NextStep();
         }
