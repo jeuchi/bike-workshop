@@ -32,6 +32,16 @@ public class TutorialManager : MonoBehaviour
         ShowCurrentStep();
     }
 
+    public void GoToQuiz()
+    {
+        // Hide the current step's object
+        HideCurrentStepObject();
+
+        // Go to the quiz step which is the final step
+        currentStepIndex = steps.Count - 1;
+        ShowCurrentStep();
+    }
+
     public void NextStep()
     {
         if (currentStepIndex < steps.Count - 1)

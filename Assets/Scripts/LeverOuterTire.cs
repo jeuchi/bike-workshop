@@ -16,7 +16,6 @@ public class LeverOuterTire : MonoBehaviour
     public GameObject tire; // Reference to the tire GameObject
     public List<GameObject> tirePoints; // List of tire points in the correct order
     public Material pointHighlightMaterial; // Material to highlight tire points
-    public Material pointCompletedMaterial; // Material for completed points
 
     private Material leverOriginalMaterial;
     private Dictionary<GameObject, Material> pointOriginalMaterials = new Dictionary<GameObject, Material>();
@@ -24,9 +23,19 @@ public class LeverOuterTire : MonoBehaviour
     private bool isLeverHeld = false;
     private List<List<GameObject>> pointGroups = new List<List<GameObject>>();
     private HashSet<GameObject> touchedPointsInCurrentGroup = new HashSet<GameObject>();
+    private bool isActive = false;
+
+    // Getter for checking if script is enabled or disabled
+    public bool isActiveScript
+    {
+        get { return isActive; }
+    }
+
 
     void OnEnable()
     {
+        isActive = true;
+
         // Unfreeze lever
         lever.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
@@ -69,6 +78,8 @@ public class LeverOuterTire : MonoBehaviour
 
     void OnDisable()
     {
+        isActive = false;
+        
         // Unsubscribe to prevent memory leaks
         lever.selectEntered.RemoveListener(OnLeverGrabbed);
         lever.selectExited.RemoveListener(OnLeverReleased);

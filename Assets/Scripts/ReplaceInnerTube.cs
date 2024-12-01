@@ -33,6 +33,7 @@ public class ReplaceInnerTube : MonoBehaviour
         // Freeze inner tube
         newTube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().selectEntered.RemoveListener(OnNewTubeGrabbed);
         newTube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        newTube.GetComponent<BoxCollider>().isTrigger = true;
     }
 
     private void OnOldTubeGrabbed(SelectEnterEventArgs args)
@@ -49,7 +50,6 @@ public class ReplaceInnerTube : MonoBehaviour
     {
         if (args.interactableObject.transform == newTube.transform)
         {
-            Debug.Log("Tube placed in zone");
             tutorialManager.NextStep();
         }
     }
