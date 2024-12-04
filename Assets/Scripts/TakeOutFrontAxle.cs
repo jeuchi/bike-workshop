@@ -9,6 +9,10 @@ public class TakeOutFrontAxle : MonoBehaviour
 
     [Header("Axle Settings")]
     public GameObject axleHighlight; // Reference to the axle GameObject
+
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable axle; // Reference to the axle GameObject
     public GameObject targetZone; // Reference to the target zone GameObject
     public GameObject axleSocket; // Reference to the axle socket GameObject
@@ -78,6 +82,9 @@ public class TakeOutFrontAxle : MonoBehaviour
     {
         if (args.interactableObject.transform == axle.transform)
         {
+            // Play positive interaction sound
+            positiveDing.Play();
+
             isInTargetZone = true;
             axleHighlight.GetComponent<Renderer>().material = axleOriginalMaterial;
 
