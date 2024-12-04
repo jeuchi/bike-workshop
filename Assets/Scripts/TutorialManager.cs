@@ -77,6 +77,9 @@ public class TutorialManager : MonoBehaviour
         {
             step.stepObject.SetActive(false);
         }
+
+        instructionText.text = "";
+        infoText.text = "";
     }
 }
 
