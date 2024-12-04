@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class RemoveTire : MonoBehaviour
 {
     public TutorialManager tutorialManager;
+
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
     public GameObject tireHighlight; // Reference to the tire GameObject  
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable targetObject;    // The object the user interacts with
     public GameObject targetZone;      // The target zone as an XRSocketInteractor
@@ -52,6 +56,9 @@ public class RemoveTire : MonoBehaviour
 
     private void OnObjectPickedUp(SelectEnterEventArgs args)
     {
+        // Play positive sound
+        positiveDing.Play();
+
         // Unfreeze constraints
         targetObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         targetZone.SetActive(true);
@@ -64,6 +71,9 @@ public class RemoveTire : MonoBehaviour
 
     private void OnObjectDropped(SelectExitEventArgs args)
     {
+        // Play negative sound
+        negativeSound.Play(); // test that this only plays once (might play continuously)
+
         tutorialManager.instructionText.text = "Please pick up the front tire";
 
         // Highlight the tire
@@ -77,6 +87,9 @@ public class RemoveTire : MonoBehaviour
     {
         if (args.interactableObject.transform == targetObject.transform)
         {
+            // Play positive sound
+            positiveDing.Play();
+
             isInTargetZone = true;
 
             // Remove highlight from the tire

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 public class ReplaceInnerTube : MonoBehaviour
 {
     public TutorialManager tutorialManager;
+
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
     public GameObject oldTube;
     public GameObject newTube;
     public GameObject tubeSocket;
@@ -38,16 +43,25 @@ public class ReplaceInnerTube : MonoBehaviour
 
     private void OnOldTubeGrabbed(SelectEnterEventArgs args)
     {
+        // Play click
+        clickSound.Play();
+
         tutorialManager.instructionText.text = "Take out the inner red tube from the front tire and grab a new inner tube from underneath this table";
     }
 
     private void OnNewTubeGrabbed(SelectEnterEventArgs args)
     {
+        // Play click
+        clickSound.Play();
+
         tutorialManager.instructionText.text = "Place the new inner tube in the front tire";
     }
 
     private void OnObjectPlacedInZone(SelectEnterEventArgs args)
     {
+        // Play positive ding
+        positiveDing.Play();
+
         if (args.interactableObject.transform == newTube.transform)
         {
             tutorialManager.NextStep();

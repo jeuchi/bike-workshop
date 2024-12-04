@@ -16,8 +16,12 @@ public class LeverOuterTire : MonoBehaviour
     public GameObject tire; // Reference to the tire GameObject
     public List<GameObject> tirePoints; // List of tire points in the correct order
     public Material pointHighlightMaterial; // Material to highlight tire points
-
     private Material leverOriginalMaterial;
+
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
     private Dictionary<GameObject, Material> pointOriginalMaterials = new Dictionary<GameObject, Material>();
     private int currentGroupIndex = 0;
     private bool isLeverHeld = false;
@@ -92,6 +96,9 @@ public class LeverOuterTire : MonoBehaviour
 
     private void OnLeverGrabbed(SelectEnterEventArgs args)
     {
+        // Play positive ding
+        positiveDing.Play();
+
         isLeverHeld = true;
         HighlightLever(false); // Remove lever highlight
         HighlightTirePoints(); // Highlight the tire points
@@ -100,6 +107,9 @@ public class LeverOuterTire : MonoBehaviour
 
     private void OnLeverReleased(SelectExitEventArgs args)
     {
+        // Play negative sounds
+        negativeSound.Play();
+
         isLeverHeld = false;
         ResetProgress();
     }
@@ -161,6 +171,9 @@ public class LeverOuterTire : MonoBehaviour
             if (!touchedPointsInCurrentGroup.Contains(point))
             {
                 Debug.Log("Correct point touched");
+                 
+                // Play click sounds ding
+                clickSound.Play();
 
                 Vector3 rotation = tire.transform.rotation.eulerAngles;
                 switch (tirePoints.IndexOf(point))
@@ -194,14 +207,23 @@ public class LeverOuterTire : MonoBehaviour
                     // Update tire instructions
                     if (currentGroupIndex == 0)
                     {
+                        // Play positive ding
+                        positiveDing.Play();
+
                         tutorialManager.instructionText.text = "With the lever, touch the next two tire points in the middle";
                     }
                     else if (currentGroupIndex == 1)
                     {
+                        // Play positive ding
+                        positiveDing.Play();
+
                         tutorialManager.instructionText.text = "With the lever, touch the last two tire points on the bottom";
                     }
                     else
                     {
+                        // Play positive ding
+                        positiveDing.Play();
+
                         tutorialManager.instructionText.text = "";
                     }
 
@@ -225,6 +247,9 @@ public class LeverOuterTire : MonoBehaviour
         // Check if the point is already been selected so ignore
         else if (point.GetComponent<Renderer>().material != pointOriginalMaterials[point])
         {
+            // Play negative sound
+            negativeSound.Play();
+
             // Incorrect point touched, reset progress
             ResetProgress();
         }
@@ -232,6 +257,9 @@ public class LeverOuterTire : MonoBehaviour
 
     private void OnTaskCompleted()
     {
+        // Play positive ding
+        positiveDing.Play();
+
         tutorialManager.NextStep();
     }
 }
