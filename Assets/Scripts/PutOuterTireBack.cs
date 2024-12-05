@@ -12,7 +12,13 @@ public class PutOuterTireBack : MonoBehaviour
     public Material pointHighlightMaterial; // Material to highlight tire points
 
     private Dictionary<GameObject, Material> pointOriginalMaterials = new Dictionary<GameObject, Material>();
+
     private HashSet<GameObject> touchedPoints = new HashSet<GameObject>();
+    
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
     private bool isActive = false;
 
     // Getter for checking if script is enabled or disabled
@@ -101,9 +107,15 @@ public class PutOuterTireBack : MonoBehaviour
         SetPointMaterial(point, pointOriginalMaterials[point]);
         touchedPoints.Add(point);
 
+        // Play click sound
+        clickSound.Play();
+
         // Check if all points are completed
         if (touchedPoints.Count == tirePoints.Count)
         {
+            // Play positive reward sound
+            positiveDing.Play();
+
             OnTaskCompleted();
         }
     }

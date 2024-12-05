@@ -20,6 +20,11 @@ public class PutTireBack : MonoBehaviour
     private Material originalAxleMaterial;
     private Material originalPumpMaterial;
 
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
+
     void OnEnable()
     {
         tutorialManager.infoText.text = "Did you know? Low tire pressure increases the likelihood of getting a flat tire, so make sure to keep your tires properly inflated!";
@@ -65,6 +70,9 @@ public class PutTireBack : MonoBehaviour
 
     private void OnTirePlacedOnBike(SelectEnterEventArgs args)
     {
+        // Play click sound
+        clickSound.Play();
+
         if (args.interactableObject.transform == tire.transform)
         {
             tutorialManager.instructionText.text = "Place the front axle back in the front tire";
@@ -80,6 +88,9 @@ public class PutTireBack : MonoBehaviour
     {
         if (args.interactableObject.transform == axle.transform)
         {
+            // Play click sound
+            clickSound.Play();
+
             // Freeze axle in place
             axle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             axle.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().interactionLayers = LayerMask.GetMask("");
@@ -95,8 +106,15 @@ public class PutTireBack : MonoBehaviour
     {
         if (args.interactableObject.transform == pumpHandle.transform)
         {
+            // Play click sound
+            clickSound.Play();
+
             Debug.Log("Pump placed in zone");
             pumpHighlight.GetComponent<Renderer>().material = originalPumpMaterial;
+
+            // Play positive ding to indicate completed step
+            positiveDing.Play();
+
             tutorialManager.NextStep();
         }
     }

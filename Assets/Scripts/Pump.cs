@@ -10,6 +10,11 @@ public class Pump : MonoBehaviour
     public Text progress;
     public Text warning;
 
+    [Header("Audio Settings")]
+    public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource negativeSound; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
+
     private float minY = 0.64f; // Minimum Y position for the pump handle
     private float maxY = 0.9f; // Maximum Y position for the pump handle
     private float rate = 10f; // PSI increase rate per unit handle movement
@@ -50,6 +55,9 @@ public class Pump : MonoBehaviour
 
     void OnGrabbed(SelectEnterEventArgs args)
     {
+        // Play click sounds
+        clickSound.Play();
+
         // Initialize previous position when the handle is grabbed
         previousYPosition = pumpHandle.transform.position.y;
     }
@@ -59,6 +67,9 @@ public class Pump : MonoBehaviour
         // Optionally reset or perform cleanup when the handle is released
         if (currentPSI >= targetPSI && currentPSI < targetPSI * 1.2f)
         {
+            // Play positive ding
+            positiveDing.Play();
+
             instructions.text = "Success! Tire PSI has reached the target.";
             tutorialManager.NextStep();
         }
@@ -105,6 +116,9 @@ public class Pump : MonoBehaviour
 
         if (currentPSI > overLimit)
         {
+            // Play negative sound
+            negativeSound.Play();
+
             // Reset progress and show warning
             warning.text = "You exceeded the safe PSI limit! Progress has been reset.";
             warning.color = Color.red;
@@ -126,11 +140,17 @@ public class Pump : MonoBehaviour
         {
             if (currentPSI > targetPSI + 5f)
             {
+                // Play negative sound
+                negativeSound.Play();
+
                 warning.text = "Warning: You are putting too much pressure on the tire!";
                 warning.color = new Color(1f, 0.5f, 0f);
             } 
             else if (currentPSI > targetPSI +10f)
             {
+                // Play negative sound
+                negativeSound.Play();
+
                 warning.text = "Warning: This is dangerous! Please stop!";
                 warning.color = Color.red;
             } 
