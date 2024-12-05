@@ -50,7 +50,7 @@ public class Quiz : MonoBehaviour
 
         switch(questionNumber) {
             case 1:
-                questionCanvas.text = "When using a tire lever, what is the correct way to remove the outer tire?";
+                questionCanvas.text = "Quiz Time!\n\nWhen using a tire lever, what is the correct way to remove the outer tire?";
                 optionsCanvas.text = "A. Insert one end of the tire lever between the tire and the rim, pry the tire open, and move the lever along the rim to gradually loosen the tire"
                             + "\nB. Use the tire lever to forcefully pry the tire off in one motion"
                             + "\nC. Use two tire levers to pry open both sides of the tire simultaneously"

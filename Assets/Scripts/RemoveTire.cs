@@ -24,7 +24,7 @@ public class RemoveTire : MonoBehaviour
         targetObject.GetComponent<SphereCollider>().enabled = true;
         targetObject.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().enabled = true;
 
-        tutorialManager.instructionText.text = "Please grab the front tire and drop it in the highlighted area";
+        tutorialManager.instructionText.text = "Great job! Next grab the front tire and drop it in the highlighted area";
           
         // Subscribe to the XRGrabInteractable events
        // targetObject.selectEntered.AddListener(OnObjectPickedUp);

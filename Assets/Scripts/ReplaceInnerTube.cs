@@ -16,7 +16,7 @@ public class ReplaceInnerTube : MonoBehaviour
 
     void OnEnable()
     {    
-        tutorialManager.infoText.text = "Did you know? Tubeless tires don't have inner tubes; instead, they use sealant to prevent leaks. But don't forget to top up the sealant every 2-3 months to keep it effective!";
+        tutorialManager.infoText.text = "\x25C7 Did you know? Some tires don't even have tubes?? Instead, tubeless tires use a sealant (liquid) to prevent leaks. With tubeless tires, there is more maintenance. You need to fill up your sealant every 2-3 months to keep it effective!";
         oldTube.SetActive(true);
 
         oldTube.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().interactionLayers = LayerMask.GetMask("Default", "Tube");
@@ -46,7 +46,7 @@ public class ReplaceInnerTube : MonoBehaviour
         // Play click
         clickSound.Play();
 
-        tutorialManager.instructionText.text = "Take out the inner red tube from the front tire and grab a new inner tube from underneath this table";
+        tutorialManager.instructionText.text = "Now place the lever down, and take out the inner red tube from the front tire and place it on the ground on your right. Then grab the new inner tube on the ground placed to your left";
     }
 
     private void OnNewTubeGrabbed(SelectEnterEventArgs args)

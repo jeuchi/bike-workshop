@@ -14,7 +14,7 @@ public class PutOuterTireBack : MonoBehaviour
     private Dictionary<GameObject, Material> pointOriginalMaterials = new Dictionary<GameObject, Material>();
 
     private HashSet<GameObject> touchedPoints = new HashSet<GameObject>();
-    
+
     [Header("Audio Settings")]
     public AudioSource positiveDing; // Reference to the AudioSource component
     public AudioSource negativeSound; // Reference to the AudioSource component
@@ -66,7 +66,7 @@ public class PutOuterTireBack : MonoBehaviour
         touchedPoints.Clear();
         HighlightTirePoints();
         tire.transform.rotation = Quaternion.Euler(90, 0, -90);
-        tutorialManager.instructionText.text = "Please use your hands to touch all the points to put the tire back";
+        tutorialManager.instructionText.text = "Please use your hands to touch all the points to put the tire back. This will allow the deflated innertube to sit back in the groove of your tire, ready for the next step. ";
     }
 
     private void SetPointMaterial(GameObject point, Material material)

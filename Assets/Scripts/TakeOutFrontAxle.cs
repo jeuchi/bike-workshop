@@ -12,6 +12,7 @@ public class TakeOutFrontAxle : MonoBehaviour
 
     [Header("Audio Settings")]
     public AudioSource positiveDing; // Reference to the AudioSource component
+    public AudioSource clickSound; // Reference to the AudioSource component
 
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable axle; // Reference to the axle GameObject
     public GameObject targetZone; // Reference to the target zone GameObject
@@ -23,7 +24,7 @@ public class TakeOutFrontAxle : MonoBehaviour
 
     void OnEnable()
     {
-        tutorialManager.instructionText.text = "Pull the front axle (highlighted green) out of the front tire. This will free the tire from the frame.";
+        tutorialManager.instructionText.text = "Welcome to Bike Workshop\nToday you will be learning how to change a tire all on your own. \n\n Let's get started with our first step: \nPull the front axle (highlighted green) out of the front tire. This will free the tire from the frame.";
         axle.selectEntered.AddListener(OnAxleGrabbed);
         axle.selectExited.AddListener(OnAxleReleased);
         axleOriginalMaterial = axleHighlight.GetComponent<Renderer>().material;
@@ -39,6 +40,8 @@ public class TakeOutFrontAxle : MonoBehaviour
         // If the axle is not in the collider, unfreeze
         if (axle.isSelected && axleSocket.GetComponent<Collider>().bounds.Contains(axle.transform.position))
         {
+            
+
             axle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             // Also don't allow for negative z values
             if (axle.transform.position.z < axleSocket.transform.position.z)

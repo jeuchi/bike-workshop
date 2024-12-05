@@ -27,7 +27,7 @@ public class PutTireBack : MonoBehaviour
 
     void OnEnable()
     {
-        tutorialManager.infoText.text = "Did you know? Low tire pressure increases the likelihood of getting a flat tire, so make sure to keep your tires properly inflated!";
+        tutorialManager.infoText.text = "\x25C7 Did you know? Low tire pressure increases the likelihood of getting a flat tire from pinching! So make sure to keep your tires properly inflated!";
         tutorialManager.instructionText.text = "Please pick up the front tire and place it back on the bike";
         originalTireMaterial = tireHighlight.GetComponent<Renderer>().material;
         tireHighlight.GetComponent<Renderer>().material = tutorialManager.highlightMaterial;
@@ -55,6 +55,7 @@ public class PutTireBack : MonoBehaviour
         // If the axle is not in the collider, unfreeze
         if (axle.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>().isSelected && axleSocket.GetComponent<Collider>().bounds.Contains(axle.transform.position))
         {
+
             axle.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             // Also don't allow for negative z values
             if (axle.transform.position.z < axleSocket.transform.position.z)

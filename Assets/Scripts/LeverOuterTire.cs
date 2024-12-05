@@ -77,7 +77,7 @@ public class LeverOuterTire : MonoBehaviour
         // Reset tire points to default state
         ResetProgress();
 
-        tutorialManager.instructionText.text = "Please pick up the lever highlighted green on the desk in front of you";
+        tutorialManager.instructionText.text = "Woohoo! Next, pick up the lever highlighted green on the desk in front of you";
     }
 
     void OnDisable()
@@ -97,7 +97,7 @@ public class LeverOuterTire : MonoBehaviour
     private void OnLeverGrabbed(SelectEnterEventArgs args)
     {
         // Play positive ding
-        positiveDing.Play();
+        clickSound.Play();
 
         isLeverHeld = true;
         HighlightLever(false); // Remove lever highlight
@@ -137,7 +137,7 @@ public class LeverOuterTire : MonoBehaviour
         if (!isLeverHeld) 
         {
             HighlightLever(true); // Highlight the lever to prompt pickup
-            tutorialManager.instructionText.text = "Please pick up the lever highlighted green";
+            tutorialManager.instructionText.text = "Woohoo!! Next, pick up the lever highlighted green";
         } else {
             currentGroupIndex = 0;
             touchedPointsInCurrentGroup.Clear();

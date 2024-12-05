@@ -3627,7 +3627,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5f25b426184cd4dbbb5b740208f42a15, type: 3}
     m_FontSize: 80
     m_FontStyle: 1
     m_BestFit: 0
@@ -4524,6 +4524,9 @@ MonoBehaviour:
   instructions: {fileID: 1631217613}
   progress: {fileID: 947572891}
   warning: {fileID: 933582268}
+  positiveDing: {fileID: 1125177987}
+  negativeSound: {fileID: 11456075}
+  clickSound: {fileID: 1979889591}
 --- !u!1 &947572889
 GameObject:
   m_ObjectHideFlags: 0
@@ -6174,6 +6177,9 @@ MonoBehaviour:
   - {fileID: 1008847726}
   - {fileID: 997546016}
   pointHighlightMaterial: {fileID: 2100000, guid: 0f51b94f6d8a4ee48bcc9a4e5be752d4, type: 2}
+  positiveDing: {fileID: 1125177987}
+  negativeSound: {fileID: 11456075}
+  clickSound: {fileID: 1979889591}
 --- !u!4 &1146745183
 Transform:
   m_ObjectHideFlags: 0
@@ -6899,8 +6905,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1125177986}
-  - {fileID: 1979889590}
   - {fileID: 11456074}
+  - {fileID: 1979889590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1266411731
@@ -9110,6 +9116,9 @@ MonoBehaviour:
   axleSocket: {fileID: 1550760501}
   pumpSocket: {fileID: 1648591363}
   pumpHighlight: {fileID: 8858118561206204780}
+  positiveDing: {fileID: 1125177987}
+  negativeSound: {fileID: 11456075}
+  clickSound: {fileID: 1979889591}
 --- !u!1 &1750171305
 GameObject:
   m_ObjectHideFlags: 0
@@ -9273,6 +9282,7 @@ MonoBehaviour:
   tutorialManager: {fileID: 1775651766}
   axleHighlight: {fileID: 2034504368}
   positiveDing: {fileID: 1125177987}
+  clickSound: {fileID: 1979889591}
   axle: {fileID: 1852195878}
   targetZone: {fileID: 958371675}
   axleSocket: {fileID: 1550760501}

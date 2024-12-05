@@ -30,7 +30,7 @@ public class Pump : MonoBehaviour
         progress.text = $"Current PSI: {currentPSI:F2} PSI Target PSI: {targetPSI:F2} PSI";
         warning.text = "";
         tutorialManager.instructionText.text = "Pump the front tire to reach 80 PSI. Pull the handle up and down to pump the tire.";
-        tutorialManager.infoText.text = "Did you know? Low tire pressure increases the risk of a flat tire. Road bike tires need much higher pressure than car tires—up to 120 psi, compared to just 32 psi for cars!";
+        tutorialManager.infoText.text = "\x25C7 Did you know? Do you remember our tip from earlier? Road bike tires need much higher pressure than car tires, sometimes up to 120 psi. That's a lot compared to just 32 psi for cars!";
         handleRigidbody = pumpHandle.GetComponent<Rigidbody>();
         grabInteractable = pumpHandle.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
             
